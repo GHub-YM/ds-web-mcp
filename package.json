@@ -1,0 +1,51 @@
+{
+  "name": "ds-web-mcp",
+  "version": "0.3.0",
+  "description": "MCP server that exposes DeepSeek web chat (including its built-in web search) to any Model Context Protocol client",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "deepseek",
+    "web-search",
+    "ai-agent",
+    "browser-extension-alternative"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GHub-YM/ds-web-mcp.git"
+  },
+  "homepage": "https://github.com/GHub-YM/ds-web-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/GHub-YM/ds-web-mcp/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "bin": {
+    "ds-web-mcp": "bin/ds-web-mcp.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "vendor/",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "start": "node src/cli.ts run",
+    "login": "node src/cli.ts login",
+    "refresh": "node src/cli.ts refresh",
+    "status": "node src/cli.ts status",
+    "doctor": "node src/cli.ts doctor",
+    "test": "node tests/run-all.mjs",
+    "test:live": "node tests/run-all.mjs --live",
+    "test:all": "node tests/run-all.mjs --all"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.76"
+  }
+}

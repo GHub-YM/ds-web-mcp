@@ -1,0 +1,40 @@
+ds-web-mcp
+Copyright 2026 ds-web-mcp contributors
+
+This product includes software developed as part of DeepSeek++
+(https://github.com/zhu1090093659/deepseek-pp), licensed under the
+Apache License, Version 2.0.
+
+The files under vendor/ are derived from that project:
+
+  vendor/contracts.ts       DeepSeek web route table and constants
+  vendor/request-codec.ts   Request encoders for the DeepSeek web routes
+  vendor/stream-codec.ts    SSE stream parser for the DeepSeek web protocol
+  vendor/pow.ts             DeepSeekHashV1 proof-of-work solver
+  vendor/errors.ts          Error types used by the above
+  vendor/types.ts           Shared SSE event type
+  vendor/sha3_wasm_bg.wasm  DeepSeek's published proof-of-work WebAssembly module
+
+Modifications made in this project, relative to the upstream sources:
+
+  1. Import specifiers carry explicit .ts extensions so Node's native
+     TypeScript type stripping can resolve them without a build step.
+  2. vendor/stream-codec.ts imports the SSE event type from a local
+     vendor/types.ts instead of the upstream application-wide module, so the
+     vendored set has no dependency on the original project layout.
+  3. vendor/pow.ts loads its WebAssembly module from disk beside the file
+     rather than through chrome.runtime.getURL, which does not exist outside a
+     browser extension.
+
+No protocol logic was changed. Request encoding, route matching, stream
+parsing, fragment classification, and the proof-of-work algorithm are byte-for-
+byte the upstream implementations.
+
+Everything else in this repository is original work by the ds-web-mcp
+contributors and is licensed under the same Apache License, Version 2.0.
+
+---
+
+This project is an independent, unaffiliated integration. It is not endorsed by
+or affiliated with DeepSeek. "DeepSeek" is used only to describe interoperability
+with the publicly accessible chat.deepseek.com web service.

@@ -1,0 +1,30 @@
+import { createServer } from "node:http";
+const s = createServer((req,res)=>{
+  // print raw header order
+  console.log("RAW ORDER:", JSON.stringify(Object.keys(req.headers), null, 0));
+  console.log("RAW LINES:");
+  console.log(req.rawHeaders.join("\n"));
+  res.writeHead(200); res.end("ok");
+});
+await new Promise(r=>s.listen(0,"127.0.0.1",r));
+const port=s.address().port;
+const h = new Headers();
+h.set("content-type","application/json");
+h.set("authorization","Bearer x");
+h.set("x-app-version","2.5.0");
+h.set("x-client-platform","web");
+h.set("sec-ch-ua", "\"Chromium\";v=\"153\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"153\"");
+h.set("sec-ch-ua-mobile","?0");
+h.set("sec-ch-ua-platform","\"Windows\"");
+h.set("user-agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36");
+h.set("accept","*/*");
+h.set("origin","https://chat.deepseek.com");
+h.set("sec-fetch-site","same-origin");
+h.set("sec-fetch-mode","cors");
+h.set("sec-fetch-dest","empty");
+h.set("referer","https://chat.deepseek.com/");
+h.set("accept-encoding","gzip, deflate, br, zstd");
+h.set("accept-language","zh-CN,zh;q=0.9,en;q=0.8");
+h.set("priority","u=1, i");
+await fetch(`http://127.0.0.1:${port}/x`,{method:"POST",headers:h,body:"{}"});
+s.close();

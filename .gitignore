@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Local credentials — never commit these
+.ds-web-mcp.json
+.deepseek-web-mcp.json
+
+# Browser profiles created by `ds-web-mcp login`
+.ds-web-mcp-chrome/
+.deepseek-web-mcp-chrome/
+
+# Test leftovers
+.no-such-config.json
+tests/captured-headers.json
+
+# Build artifacts from `npm pack`
+*.tgz
+
+# Fingerprint-capture output (tools/ writes probe results here)
+tools/fingerprint-capture/*.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
